@@ -176,12 +176,17 @@ body {
 }
 
 /* Hide Emergent branding */
+#emergent-badge,
+a[href*="emergent.sh"][href*="utm_source"],
 body > div[style*="position: fixed"],
 body > div[style*="position:fixed"],
-[class*="made-with"],
-[class*="Made with"] {
+body > a[style*="position: fixed"],
+body > a[style*="position:fixed"] {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }

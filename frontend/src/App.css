@@ -176,11 +176,12 @@ body {
 }
 
 /* Hide Emergent branding */
+body > div[style*="position: fixed"],
+body > div[style*="position:fixed"],
 [class*="made-with"],
-[class*="Made with"],
-div[style*="position: fixed"][style*="bottom"],
-div[style*="position: fixed"][style*="right"]:has(img) {
+[class*="Made with"] {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
+  pointer-events: none !important;
 }

@@ -23,6 +23,34 @@
         -->
         <title>Emergent | Fullstack App</title>
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
+        <script>
+            // Remove Emergent badge on load
+            window.addEventListener('DOMContentLoaded', function() {
+                function removeBadge() {
+                    const badge = document.getElementById('emergent-badge');
+                    if (badge) {
+                        badge.remove();
+                    }
+                }
+                removeBadge();
+                setTimeout(removeBadge, 500);
+                setTimeout(removeBadge, 1000);
+                setTimeout(removeBadge, 2000);
+                
+                // Use MutationObserver to catch dynamically added badges
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.id === 'emergent-badge' || (node.nodeType === 1 && node.querySelector && node.querySelector('#emergent-badge'))) {
+                                const badge = document.getElementById('emergent-badge');
+                                if (badge) badge.remove();
+                            }
+                        });
+                    });
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+            });
+        </script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
         -->

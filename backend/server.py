@@ -153,6 +153,11 @@ async def preprocess_data():
         
         df['Recruiter Decision'] = df['Recruiter Decision'].map({'Hire': 1, 'Reject': 0})
         
+        # Fill NaN values before combining text
+        df['Skills'] = df['Skills'].fillna('')
+        df['Certifications'] = df['Certifications'].fillna('')
+        df['Job Role'] = df['Job Role'].fillna('')
+        
         df['combined_text'] = (
             df['Skills'].astype(str) + ' ' + 
             df['Certifications'].astype(str) + ' ' + 
@@ -160,7 +165,9 @@ async def preprocess_data():
         )
         
         def clean_text(text):
-            text = text.lower()
+            if pd.isna(text) or text is None:
+                return ''
+            text = str(text).lower()
             text = re.sub(r'[^a-z0-9\s]', '', text)
             text = re.sub(r'\s+', ' ', text).strip()
             return text

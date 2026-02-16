@@ -174,3 +174,13 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(59, 130, 246, 0.7);
 }
+
+/* Hide Emergent branding */
+[class*="made-with"],
+[class*="Made with"],
+div[style*="position: fixed"][style*="bottom"],
+div[style*="position: fixed"][style*="right"]:has(img) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
